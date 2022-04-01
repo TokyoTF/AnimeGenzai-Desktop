@@ -1,0 +1,46 @@
+{
+  "name": "animegenzaidesktop",
+  "version": "1.8.4",
+  "description": "sadasd",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --exec npm start",
+    "build": "electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "animegenzai",
+    "win": {
+      "target": "NSIS",
+      "icon": "icon.ico"
+    }
+  },
+  "dependencies": {
+    "@cliqz/adblocker-electron": "^1.23.4",
+    "@popperjs/core": "^2.11.2",
+    "cross-fetch": "^3.1.5",
+    "electron-localshortcut": "^3.2.1",
+    "electron-store": "^8.0.1",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "express-useragent": "^1.0.15",
+    "is-electron": "^2.2.1",
+    "jquery": "^3.6.0",
+    "jquery.transit": "^0.9.12",
+    "multiple-select": "^1.5.2",
+    "mysql": "^2.18.1",
+    "open": "^8.4.0",
+    "protocol-registry": "^1.3.13",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "dotenv": "^11.0.0",
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "npm-check-updates": "^12.1.0"
+  }
+}
