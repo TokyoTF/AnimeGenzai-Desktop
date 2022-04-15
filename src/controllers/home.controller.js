@@ -64,8 +64,17 @@ indexCtrl.renderIndex = async (req, res) => {
     GROUP BY posts_category.content_id
     ORDER BY posts.id DESC
     LIMIT 0,6`)
-    
+    var os = require('os');
+    var osh = os.hostname()
+    const hostvisit = await pool.query(`SELECT DK_visitas.hostname,DK_visitas.id FROM DK_visitas WHERE DK_visitas.hostname = "${osh}" LIMIT 0,1`)
+    if(hostvisit.length > 0){
+        
+    }else {
+        await pool.query(`INSERT INTO DK_visitas (visitas,hostname) VALUES ("1","${osh}")`)
+    }
     res.render('Home/home', { HomeAnime, HomeEpisode,HomeSlider,HomeStory,HomeMovie })
+   
+    
 };
 
 indexCtrl.renderDiscovery = async (req, res) => {

@@ -89,6 +89,7 @@ node_modules
 
 out/
 src/keys.js
+src/controllers/home.controller.js
 license.md 
 icon.ico
 example.json 
