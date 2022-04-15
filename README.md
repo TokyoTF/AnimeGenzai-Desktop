@@ -4,7 +4,7 @@
 
 
 * La aplicación está totalmente en desarrollo.
-* version 1.8.4
+* version 1.9.2
 
 ##### Cosas a agregar
 
