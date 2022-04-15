@@ -1,0 +1,178 @@
+<!--<div class="Story-container">
+    <div class="Story-item">
+        <div class="Story-img">
+            <img src="https://animegenzai.xyz/public/upload/story/platinum-end_11.webp">
+        </div>
+        <div class="Story-info">
+            <div class="Story-title">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+            <div class="Story-description">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+        </div>
+    </div>
+    <div class="Story-item">
+        <div class="Story-img">
+            <img src="https://animegenzai.xyz/public/upload/story/platinum-end_11.webp">
+        </div>
+        <div class="Story-info">
+            <div class="Story-title">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+            <div class="Story-description">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+        </div>
+    </div>
+    <div class="Story-item">
+        <div class="Story-img">
+            <img src="https://animegenzai.xyz/public/upload/story/platinum-end_11.webp">
+        </div>
+        <div class="Story-info">
+            <div class="Story-title">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+            <div class="Story-description">
+                <p>Capitulo 5 Platinum End</p>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="Slider-container" id="SliderCra">
+    {{#each HomeSlider}}
+    <div class="Slider-item">
+        <a href="/anime/{{id}}">
+            <div class="Slider-shadow"></div>
+            <div class="Slider-image">
+                <img src="https://animegenzai.xyz/public/upload/slide/{{image}}" alt="">
+            </div>
+            <div class="Slider-info">
+                <div class="Slider-title">
+                    <p>{{title}}</p>
+                </div>
+                <div class="Slider-description">
+                    <p>{{body}}</p>
+                </div>
+            </div>
+
+        </a>
+    </div>
+    {{/each}}
+</div>
+<!--<div class="Story-container">
+    {{#each HomeStory}}
+    <div class="Story-item">
+        <div class="Story-img">
+            <img src="https://animegenzai.xyz/public/upload/cover/{{image}}">
+        </div>
+    </div>
+    {{/each}}
+</div>-->
+
+<div class="Pop-container">
+    <div class="Pop-item">
+        <div class="Pop-icon">
+        </div>
+        <div class="Pop-title">
+            <p>Ultimos Capitulos en Emision</p>
+        </div>
+    </div>
+</div>
+<div class="Anime-box-ep">
+    {{#each HomeEpisode}}
+    <a href="/anime/{{id}}/{{season_name}}/{{ep_id}}/{{episode_name}}">
+        <div class="Anime-box-ep-item">
+            <div class="Anime-box-ep-img">
+                <div class="Anime-box-ep-shadow"></div>
+                <img src="https://animegenzai.xyz/public/upload/cover/{{cover}}">
+            </div>
+            <div class="Anime-box-ep-title">
+                <p class="Title-conf">{{title}}</p>
+                <p class="Episode-conf">Temporada {{season_name}}. Episodio {{episode_name}}.</p>
+            </div>
+        </div>
+    </a>
+    {{/each}}
+</div>
+<div class="Pop-container">
+    <div class="Pop-item">
+        <div class="Pop-icon">
+        </div>
+        <div class="Pop-title">
+            <p>Ultimas series</p>
+        </div>
+    </div>
+</div>
+<div class="Anime-box ">
+    <div class="Next-anime-shadow"></div>
+    <div class="Prev-anime-shadow"></div>
+    <div class="Slider-type-a">
+    {{#each HomeAnime}}
+    <a href="/anime/{{id}}" tabindex="-1">
+        <div class="Anime-item">
+            <div class="shadow">
+                <div class="Anime-ST">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            <div class="Anime-img">
+                <img data-lazy="https://animegenzai.xyz/public/upload/cover/{{image}}">
+            </div>
+            <div class="Anime-title-container">
+                <div class="Anime-title Anime-H1">
+                    {{title}}
+                </div>
+
+            </div>
+
+        </div>
+    </a>
+    {{/each}}
+    </div>
+</div>
+<div class="Pop-container">
+    <div class="Pop-item">
+        <div class="Pop-icon">
+        </div>
+        <div class="Pop-title">
+            <p>Ultimas Peliculas</p>
+        </div>
+    </div>
+</div>
+<div class="Anime-box">
+    <div class="Next-anime-shadow"></div>
+    <div class="Prev-anime-shadow"></div>
+    <div class="Slider-type-a">
+    {{#each HomeMovie}}
+    <a href="/movie/{{id}}" tabindex="-1">
+        <div class="Anime-item">
+            <div class="shadow">
+                <div class="Anime-ST">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            <div class="Anime-img">
+                <img data-lazy="https://animegenzai.xyz/public/upload/cover/{{image}}">
+            </div>
+            <div class="Anime-title-container">
+                <div class="Anime-title Anime-H1">
+                    {{title}}
+                </div>
+
+            </div>
+
+        </div>
+    </a>
+    {{/each}}
+    
+    </div>
+</div>

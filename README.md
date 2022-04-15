@@ -18,6 +18,8 @@
 * Vista de perfiles
 * Sistema de actualizaciones
 
+* Rediseño de todo
+
 ##### Cosas a arreglar
 
 * Retraso de busquedas

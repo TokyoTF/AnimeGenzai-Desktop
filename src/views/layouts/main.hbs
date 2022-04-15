@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AnimeGenzai | アニメ現在</title>
+    <meta content="TokyoTF" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta http-equiv="cleartype" content="on">
+
+    <!--Load Css-->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="stylesheet" href="/assets/css/simplebar.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css" />
+    <link rel="stylesheet" href="/assets/css/multiple-select.min.css">
+
+    <!--Preload Scripts-->
+    <link rel="preload" href="/components/MenuHandler/MenuHandler.js" as="script">
+    <link rel="preload" href="/components/Loading/loadinghandler.js" as="script">
+    <link rel="preload" href="/assets/css/main.css" as="style">
+    <!--load Scripts-->
+    <script src="/components/Loading/loadinghandler.js" defer></script>
+    <script src="/components/Notifications/NotificationHandler.js" defer></script>
+    <script src="/components/MenuHandler/MenuHandler.js" defer></script>
+    <script src="/components/SearchHandler/searchhandler.js" defer></script>
+    <script src="/assets/js/simplebar.min.js"></script>
+
+</head>
+
+<body>
+    {{>menu-top}}
+    {{>menu-left}}
+    {{>notification}}
+    <main tabindex="-1">
+        {{>loading}}
+        <div class="shadow-search"></div>
+        <div class="container-main">
+            {{{body}}}
+        </div>
+
+    </main>
+    <script>
+        
+    </script>
+</body>
+
+</html>

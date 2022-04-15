@@ -88,14 +88,7 @@ typings/
 node_modules
 
 out/
-src/main.js
-src/db/Database.js
-src/controllers
-src/routes
-src/views
-src/public
-src/app.js
-src
+src/keys.js
 license.md 
 icon.ico
 example.json 

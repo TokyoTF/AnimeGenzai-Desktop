@@ -1,0 +1,131 @@
+{{#each AnimeRender as |r|}}
+<div class="Anime-obj-container">
+    <div class="Anime-obj-item">
+        <div class="Anime-obj-poster">
+            <img src="https://animegenzai.xyz/public/upload/cover/{{r.image}}">
+        </div>
+        <div class="Anime-obj-details">
+            <div class="Anime-obj-details-tag">
+                {{#each ../AnimeCategories}}
+                <a href="/category/{{id}}">
+                    <div class="Anime-obj-details-tag-item">
+                        <p>{{name}}</p>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+
+            <div class="Anime-obj-details-title">
+                <p>{{r.title}}</p>
+                <div class="Anime-obj-details-sub-title">
+                    {{r.title_sub}}
+                </div>
+            </div>
+            <div class="Anime-obj-details-info">
+                {{#if r.country}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Pais</p>
+                    <div class="Anime-obj-details-info-sub-item">
+                        <p>{{r.country}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if r.create_year}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Se Emitio</p>
+                    <div class="Anime-obj-details-info-sub-item">
+                        <p>{{r.create_year}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if r.duration}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Duracion</p>
+                    <div class="Anime-obj-details-info-sub-item">
+                        <p>{{r.duration}} min</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if r.animestatus}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Estado del anime</p>
+                    <div class="Anime-obj-details-info-sub-item">
+                        <p>{{r.animestatus}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if r.timeseason}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Temporada del Año</p>
+                    <div class="Anime-obj-details-info-sub-item">
+                        <p>{{r.timeseason}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if r.uploader}}
+                <div class="Anime-obj-details-info-item">
+                    <p>Creditos a</p>
+                    <a href="/profile/{{r.prouploader}}">
+                        <div class="Anime-obj-details-info-sub-item uploader">
+                            <p>{{r.uploader}}</p>
+                        </div>
+                    </a>
+                </div>
+                {{/if}}
+            </div>
+            <div class="Anime-obj-details-description">
+                <p>Descripción</p>
+                <div class="Anime-obj-details-description-item">
+                    <p>{{r.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="Anime-obj-se-container" style="margin-left: auto;margin-right: auto;">
+            <div class="Anime-obj-season">
+                {{#each ../AnimeSeason}}
+                <div class="Anime-obj-season-item" data-id="{{id}}" data-cont="{{r.id}}">
+                    <p>Temporada {{name}}.</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="Anime-obj-episodes">
+
+            </div>
+        </div>
+        <div class="Pop-container" style="left:20px">
+            <div class="Pop-item">
+                <div class="Pop-icon">
+                </div>
+                <div class="Pop-title">
+                    <p>Series Similares</p>
+                </div>
+            </div>
+        </div>
+        <div class="Anime-similar-container">
+            {{#each ../animeSimilar}}
+            <a href="/anime/{{id}}">
+                <div class="Anime-similar-item">
+                    <div class="Anime-similar-shadow">
+                        <div class="Anime-ST">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="Anime-similar-img">
+                        <img decoding="async" src="https://animegenzai.xyz/public/upload/cover/{{image}}" loading="lazy">
+                    </div>
+                    <div class="Anime-similar-title">
+                        <p>{{title}}</p>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/each}}
+<script src="/components/TabHandler/Tabshandler.js"></script>

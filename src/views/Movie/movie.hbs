@@ -1,0 +1,75 @@
+<head>
+    <link href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css" rel="stylesheet">
+</head>
+<div class="Episode-container">
+    <div class="Episode-services-container">
+        <select class="multiple-select">
+
+            {{#each MovieVideo}}
+            <option value="{{sortable}}" data-id="{{id}}" data-iframe="{{video_embed}}">{{service_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+   <div class="Episode-player">
+        <iframe src="" id="iframe" scrolling="no" allowfullscreen allow="accelerometer;encrypted-media;"></iframe>
+    </div>
+    <div class="Anime-dt-container">
+        {{#each MovieDetails}}
+        <div class="Anime-dt-item">
+            <div class="Anime-dt-poster">
+                <img src="https://animegenzai.xyz/public/upload/cover/{{image}}">
+            </div>
+            <div class="Anime-dt-details">
+                <div class="Anime-dt-title">
+                    <p class="Anime-dt-style-se">Pelicula</p>
+                    <p class="Anime-dt-style-title">{{title}}</p>
+                    <p class="Anime-dt-style-sub-title">{{title_sub}}</p>
+                </div>
+                <div class="Anime-dt-more-container">
+                    <div class="Anime-dt-more">
+                        <p></p>
+                        <p></p>
+                    </div>
+                    <div class="Anime-dt-more">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="Pop-container" style="left:-1.5px">
+        <div class="Pop-item">
+            <div class="Pop-icon">
+            </div>
+            <div class="Pop-title">
+                <p>Peliculas Similares</p>
+            </div>
+        </div>
+    </div>
+    <div class="Anime-similar-container">
+        {{#each peliculaSimilars}}
+        <a href="/movie/{{id}}">
+            <div class="Anime-similar-item">
+                <div class="Anime-similar-shadow">
+                    <div class="Anime-ST">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="Anime-similar-img">
+                    <img src="https://animegenzai.xyz/public/upload/cover/{{image}}">
+                </div>
+                <div class="Anime-similar-title">
+                    <p>{{title}}</p>
+                </div>
+            </div>
+        </a>
+        {{/each}}
+    </div>
+</div>
+<script src="/assets/js/ep.js" defer></script>

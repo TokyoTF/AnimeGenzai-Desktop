@@ -1,0 +1,84 @@
+{{#each profile}}
+<div class="profile-container">
+    <div class="profile-header-bg">
+        <div class="header-middle-gradient"></div>
+        {{#if this.banner}}
+        <img src="https://animegenzai.xyz/public/upload/user/banners/thumb-{{this.banner}}">
+        {{/if}}
+    </div>
+    <div class="profile-header">
+
+        <div class="profile-header-avatar">
+            {{#if this.avatar}}
+            <img src="https://animegenzai.xyz/public/upload/user/{{this.avatar}}" />
+            {{/if}}
+        </div>
+        <div class="profile-header-name">
+            <p>{{this.name}}</p>
+        </div>
+        <div class="profile-header-info">
+            <a href="#tab-1" class="tab">
+                <div class="profile-header-info-item tab-active">
+                    <p>Home</p>
+                    <div class="little-bar"></div>
+                </div>
+            </a>
+            <a href="#tab-2" class="tab">
+                <div class="profile-header-info-item">
+                    <p>Animes</p>
+                    <div class="little-bar"></div>
+                </div>
+            </a>
+            <a href="#tab-3" class="tab">
+                <div class="profile-header-info-item">
+                    <p>Animes Gustado</p>
+                    <div class="little-bar"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="profile-middle-container">
+        <div id="tab-1" class="profile-middle-info show">
+            <div class="profile-middle-collctions-title">
+                <p>Colecciones</p>
+            </div>
+            {{#each ../collections as |col|}}
+            <div class="profile-middle-collections-item">
+                <div class="profile-middle-collections-header">
+                    <p>{{col.name}}</p>
+                </div>
+                <div class="profile-middle-collections-info">
+                    <div class="profile-middle-collections-info-item">
+                        <p>Total</p>
+                        <span>{{col.toplam}}</span>
+                    </div>
+                    <div class="profile-middle-collections-info-item">
+                        <p>Creacion</p>
+                        <span>{{#moment col.created}}{{/moment}}</span>
+                    </div>
+                    <div class="profile-middle-collections-info-item">
+                        <p>Popular</p>
+                        <span>5</span>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div id="tab-2" class="profile-middle-info">
+            <p>xd</p>
+        </div>
+        <div id="tab-3" class="profile-middle-info">
+            <div class="profile-middle-follow-item">
+
+            </div>
+            {{#each ../follows as |follow|}}
+            <p>
+
+                {{follow.title}}
+
+            </p>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/each}}

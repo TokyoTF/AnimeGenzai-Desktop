@@ -1,0 +1,140 @@
+<head>
+    <link href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/plyr.css">
+
+</head>
+<div class="Episode-container">
+    <div class="Episode-services-container">
+        {{#with AnimeEpisode.[0]}}
+        <div id="present" data-ep="{{episode_id}}"></div>
+        {{/with}}
+        <select class="multiple-select">
+            {{#each AnimeEpisode}}
+            <option value="{{sortable}}" data-id="{{id}}" data-iframe="{{video_embed}}">{{service_name}}</option>
+            {{/each}}
+        </select>
+
+
+    </div>
+
+
+    <div class="Episode-player">
+        <iframe src="" id="iframe" scrolling="no" allowfullscreen allow="accelerometer;encrypted-media;"></iframe>
+    </div>
+
+    <div class="leterbar-container">
+        <div class="leterbar-actions">
+            {{#each EpisodeNext}}
+            <a href="/anime/{{id}}/{{se_id}}/{{ep_id}}/{{episode_name}}">
+                <div class="Next-container">
+                    <div class="next">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div class="title-inf" style="right: 50px; text-align:right;">
+                        <p>Siguiente Capitulo</p>
+
+                        <div class="title-next">
+                            <p>{{season_name}}.Temporada {{episode_name}}.Episodio</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+            {{#each EpisodePrev}}
+            <a href="/anime/{{id}}/{{se_id}}/{{ep_id}}/{{episode_name}}">
+                <div class="Prev-container">
+                    <div class="prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </div>
+                    <div class="title-inf" style="float:left !important;">
+                        <p style="left: 50px;">Capitulo Anterior</p>
+
+                        <div class="title-next" style=" left: 50px;">
+                            <p>{{season_name}}.Temporada {{episode_name}}.Episodio</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+    <div class="Anime-dt-container">
+        {{#each AnimeDetails}}
+        <div class="Anime-dt-item">
+            <div class="Anime-dt-poster">
+                <img src="https://animegenzai.xyz/public/upload/cover/{{image}}">
+            </div>
+            <div class="Anime-dt-details">
+                <div class="Anime-dt-title">
+                    <p class="Anime-dt-style-se">{{season_name}}.Temporada {{episode_name}}.Capitulo</p>
+                    <p class="Anime-dt-style-title">{{title}}</p>
+                    <p class="Anime-dt-style-sub-title">{{title_sub}}</p>
+                </div>
+                <div class="Anime-dt-more-container">
+                    <div class="Anime-dt-more">
+                        <p></p>
+                        <p></p>
+                    </div>
+                    <div class="Anime-dt-more">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="Anime-obj-se-container">
+        <div class="Anime-obj-season">
+            {{#each AnimeSeason}}
+            <div class="Anime-obj-season-item" data-id="{{id}}" data-cont="{{content_id}}">
+                <p>Temporada {{name}}.</p>
+            </div>
+            {{/each}}
+        </div>
+        <div class="Anime-obj-episodes">
+
+        </div>
+    </div>
+    <div class="Pop-container" style="left:-3px">
+        <div class="Pop-item">
+            <div class="Pop-icon">
+            </div>
+            <div class="Pop-title">
+                <p>Series Similares</p>
+            </div>
+        </div>
+    </div>
+    <div class="Anime-similar-container">
+        {{#each animeSimilars}}
+        <a href="/anime/{{id}}">
+            <div class="Anime-similar-item">
+                <div class="Anime-similar-shadow">
+                    <div class="Anime-ST">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="Anime-similar-img">
+                    <img decoding="async" src="https://animegenzai.xyz/public/upload/cover/{{image}}" loading="lazy">
+                </div>
+                <div class="Anime-similar-title">
+                    <p>{{title}}</p>
+                </div>
+            </div>
+        </a>
+        {{/each}}
+    </div>
+</div>
+<script src="/assets/js/plyr.js"></script>
+<script src="/components/TabHandler/Tabshandler.js"></script>
+<script src="/assets/js/ep.js" defer></script>
