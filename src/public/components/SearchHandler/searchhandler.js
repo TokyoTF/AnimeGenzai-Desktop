@@ -76,8 +76,8 @@ function handlerO() {
     })
 }
 $(document).ready(function () {
-    (".search-container").hide()
-    $("#search-text").hide()
+    $(".search-container").hide()
+    
 })
 $(".shadow-search").on('click', function () {
     

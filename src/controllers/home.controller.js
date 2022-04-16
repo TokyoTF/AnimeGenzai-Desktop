@@ -28,13 +28,11 @@ indexCtrl.renderIndex = async (req, res) => {
     LIMIT 0,8`)
     const HomeSlider = await pool.query(`SELECT
     posts.id, 
-    slider.title, 
-    posts.self,  
+    slider.title,   
     slider.image, 
     posts.create_year,
     slider.body,
     slider.link,
-    posts.imdb,
     posts.type,
     posts.created
     FROM slider

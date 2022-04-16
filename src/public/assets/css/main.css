@@ -909,8 +909,8 @@ body {
 }
 
 .Slider-info {
-    width: 64%;
-    height: 70%;
+    width: 75%;
+    height: 73%;
     position: absolute;
     bottom: 0;
     margin-left: 40px;
@@ -918,7 +918,7 @@ body {
 }
 
 .Slider-title {
-    width: 55%;
+    width: 85%;
     height: 20%;
     z-index: 99;
     left: 40px;
@@ -930,8 +930,8 @@ body {
 .Slider-title p {
     margin: 0;
     color: #ffffff;
-    font-weight: 800;
-    font-size: 28px;
+    font-weight: 700;
+    font-size: 40px;
     text-transform: uppercase;
     text-align: left;
     letter-spacing: 1.0px;
@@ -1218,7 +1218,7 @@ body {
 
 .Anime-obj-poster {
     width: 180px;
-    height: 250px;
+    height: 240px;
     border-radius: 5px;
     overflow: hidden;
     opacity: 92%;
@@ -1235,6 +1235,7 @@ body {
 
 .Anime-obj-se-container {
     height: 369px;
+    min-height: 200px;
     border-radius: 5px;
     position: relative;
     display: flex;
@@ -2547,7 +2548,7 @@ img:not([src]) {
     height: auto;
     border-radius: 10px;
     position: relative;
-    background-color: #2e2e2e;
+    background-color: #191919;
     float: left;
     margin-top: 15px;
     margin-right: 10px;

@@ -12,6 +12,6 @@ $(function () {
 
 $(".next").click(function() {
     $.post("/page/" + 1,function(r) {
-        console.log(r)
+        
     })
 })

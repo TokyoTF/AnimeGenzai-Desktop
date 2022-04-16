@@ -33,9 +33,8 @@ $(function() {
           },
     })
     $("select").ready(function() {
-        
-     
-        if(document.querySelector("select").innerText == "GenPlayer") {
+
+        if($("select").multipleSelect("getSelects","text")[0]) {
             var Ulrs = $("select > option").data('iframe')
             if(Ulrs.includes(".mp4")) {
 
