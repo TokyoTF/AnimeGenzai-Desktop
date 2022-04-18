@@ -1,6 +1,6 @@
 {
   "name": "animegenzai-desktop",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "AnimeGenzai es una aplicación de escritorio para ver anime.",
   "main": "src/main.js",
   "scripts": {
