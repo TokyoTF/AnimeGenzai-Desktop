@@ -1172,7 +1172,6 @@ body {
 
 .Anime-obj-details-tag-item {
     float: left;
-    padding: 4px 6px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -1181,8 +1180,9 @@ body {
     margin-bottom: 8px;
     font-size: 13px;
     font-weight: 600;
-    color: rgb(156, 156, 156);
-    background-color: rgba(78, 78, 78, 0.24);
+    color: rgb(194, 194, 194);;
+    padding: 3px 6px;
+    background-color: rgba(74, 74, 74, 0.603);
     transition: 0.3s ease all;
 }
 
@@ -1362,8 +1362,8 @@ body {
 
 .uploader {
     border-radius: 5px;
-    padding: 2px 3px;
-    background-color: rgba(58, 58, 58, 0.384);
+    padding: 3px 7px;
+    background-color: rgb(74 74 74 / 78%);
 }
 
 .uploader p {
@@ -1427,7 +1427,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-left: 543px;
+    margin-left: 510px;
     margin-top: 87px;
     z-index: 99;
     opacity: 0;
@@ -1547,7 +1547,6 @@ form {
     display: flex;
     align-items: center;
     left: 5px;
-    border-radius: 5;
     border-right: 1px solid gray;
     padding-right: 5px;
 }
@@ -2610,4 +2609,29 @@ img:not([src]) {
 }
 .menu-top-float-item p{
    margin: 0;
+}
+
+.setsimg {
+    display: table;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    opacity: 75%;
+}
+.setsimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.setsshadow {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.508) 0%, rgba(0, 0, 0, 0.749) 51%, rgb(0 0 0) 100%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    top: 0;
 }

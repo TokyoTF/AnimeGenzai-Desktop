@@ -10,7 +10,7 @@ var innt = setInterval(() => {
         simpleBars
         clearInterval(innt);
     }
-}, 500);
+}, 100);
 
     innt
     $(".loading").transition({ x: '120px', opacity: 0 })

@@ -2,15 +2,13 @@ const animeCtrl = {};
 const pool = require('../db/Database')
 
 animeCtrl.renderAnime = async (req, res) => {
-    const AnimeRender = await pool.query(`SELECT * FROM posts WHERE posts.id = ${req.params.id}`)
+    const AnimeRender = await pool.query(`SELECT posts.id, posts.image, posts.title, posts.banner, posts.title_sub, posts.country, posts.create_year, posts.duration, posts.animestatus, posts.timeseason, posts.prouploader, posts.uploader, posts.description FROM posts WHERE posts.id = ${req.params.id}`)
     const AnimeSeason = await pool.query(`SELECT 
         posts_season.id,  
         posts_season.name
         FROM posts_season
         WHERE posts_season.content_id = ${req.params.id}
         ORDER BY cast(name as unsigned) ASC`);
-
-
 
     const AnimeEpisode = await pool.query(`SELECT 
         posts_episode.id,
@@ -20,8 +18,7 @@ animeCtrl.renderAnime = async (req, res) => {
         FROM posts_episode
         WHERE posts_episode.status = "1" AND posts_episode.content_id = ${req.params.id} AND posts_episode.season_id = ${AnimeSeason[0].id}
         ORDER BY cast(name AS UNSIGNED) ASC`);
-      
-   
+
     const AnimeCategories = await pool.query(`
         SELECT 
         categories.id, 

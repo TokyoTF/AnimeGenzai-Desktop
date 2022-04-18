@@ -15,11 +15,7 @@ indexCtrl.renderIndex = async (req, res) => {
     posts.self, 
     posts.image, 
     posts.cover, 
-    posts.animestatus,
-    posts.create_year,
-    posts.imdb,
-    posts_episode.created,
-    posts_episode.featured
+    posts.animestatus
     FROM posts_episode
     LEFT JOIN posts ON posts_episode.content_id = posts.id  
     LEFT JOIN posts_season ON posts_season.id = posts_episode.season_id  
@@ -30,17 +26,14 @@ indexCtrl.renderIndex = async (req, res) => {
     posts.id, 
     slider.title,   
     slider.image, 
-    posts.create_year,
     slider.body,
-    slider.link,
-    posts.type,
-    posts.created
+    slider.link
     FROM slider
     LEFT JOIN posts ON posts.id = slider.content_id
     WHERE posts.status = "1" 
     ORDER BY slider.id DESC
     LIMIT 0,6`)
-    const HomeStory = await pool.query(`
+    /*const HomeStory = await pool.query(`
     SELECT 
     posts.id, 
     posts.title, 
@@ -61,7 +54,7 @@ indexCtrl.renderIndex = async (req, res) => {
     WHERE posts.type = "serie" AND posts.status = "1"
     GROUP BY posts_category.content_id
     ORDER BY posts.id DESC
-    LIMIT 0,6`)
+    LIMIT 0,6`)*/
     var os = require('os');
     var osh = os.hostname()
     const hostvisit = await pool.query(`SELECT DK_visitas.hostname,DK_visitas.id FROM DK_visitas WHERE DK_visitas.hostname = "${osh}" LIMIT 0,1`)
@@ -70,7 +63,7 @@ indexCtrl.renderIndex = async (req, res) => {
     }else {
         await pool.query(`INSERT INTO DK_visitas (visitas,hostname) VALUES ("1","${osh}")`)
     }
-    res.render('Home/home', { HomeAnime, HomeEpisode,HomeSlider,HomeStory,HomeMovie })
+    res.render('Home/home', { HomeAnime, HomeEpisode,HomeSlider,HomeMovie })
    
     
 };

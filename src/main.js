@@ -3,7 +3,10 @@ const open = require('open');
 const Store = require('electron-store');
 const store = new Store();
 const ProtocolRegistry = require("protocol-registry");
-
+require('update-electron-app')({
+    repo: 'TokyoTF/AnimeGenzai-Desktop',
+    updateInterval: '5 minute'
+  })
 
 const gotTheLock = app.requestSingleInstanceLock()
 
@@ -38,7 +41,7 @@ async function main() {
         }
     })
 
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     ProtocolRegistry
         .register({

@@ -1,9 +1,19 @@
 {{#each AnimeRender as |r|}}
+{{#if r.banner}}
+<div class="setsimg">
+    <div class="setsshadow"></div>
+    <img src="https://animegenzai.xyz/public/upload/banner/{{r.banner}}" alt="">
+</div>
+{{/if}}
+
 <div class="Anime-obj-container">
+
     <div class="Anime-obj-item">
+
         <div class="Anime-obj-poster">
             <img src="https://animegenzai.xyz/public/upload/cover/{{r.image}}">
         </div>
+
         <div class="Anime-obj-details">
             <div class="Anime-obj-details-tag">
                 {{#each ../AnimeCategories}}
@@ -116,7 +126,8 @@
                         </div>
                     </div>
                     <div class="Anime-similar-img">
-                        <img decoding="async" src="https://animegenzai.xyz/public/upload/cover/{{image}}" loading="lazy">
+                        <img decoding="async" src="https://animegenzai.xyz/public/upload/cover/{{image}}"
+                            loading="lazy">
                     </div>
                     <div class="Anime-similar-title">
                         <p>{{title}}</p>

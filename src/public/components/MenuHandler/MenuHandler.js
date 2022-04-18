@@ -36,6 +36,7 @@ $("#search-page").on('click', function () {
     $(".shadow-search").show().transition({ opacity: 1 })
     $(".search-container").show();
     $(".search-container").transition({ opacity: 1 })
+    $("#search-text").focus()
 });
 //Controller menu 
 /*var tabmenu = async () => {

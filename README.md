@@ -15,7 +15,6 @@
 * Pantalla de login
 * Interfaz de usuario
 * configuraciones de la aplicación
-* Vista de perfiles
 * Sistema de actualizaciones
 
 * Rediseño de todo
