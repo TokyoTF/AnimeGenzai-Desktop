@@ -1,21 +1,29 @@
 var $ = require('jquery');
+require('jquery.transit');
 var simpleBars = document.getElementById('SimpleBarRe');
 require('jquery.transit')
+var imagesLoaded = require('imagesloaded');
 var innt = setInterval(() => {
     if ($(".loading").css('opacity') == '0') {
-        $("#SimpleBarRe").css('height','94vh')
+        $("#SimpleBarRe").css('height', '94vh')
         $(".loading").hide().transition({ x: '120px', opacity: 0 });
-        $("#SimpleBarRe").css('overflow-y','auto')
-        
+        $("#SimpleBarRe").css('overflow-y', 'auto')
+
         simpleBars
         clearInterval(innt);
     }
 }, 100);
 
-    innt
-    $(".loading").transition({ x: '120px', opacity: 0 })
-   
+innt
 
+
+$(".setsimg").ready(() => {
+    $(".setsimg").transition({ opacity: ".75" })
+});
+
+imagesLoaded(document.querySelector('.container-main'), function (instance) {
+    $(".loading").transition({ x: '120px', opacity: 0 })
+});
 /*
 setInterval(() => {
     console.clear()

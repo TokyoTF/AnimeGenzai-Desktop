@@ -2,8 +2,8 @@ const indexCtrl = {};
 const pool = require('../db/Database')
 
 indexCtrl.renderIndex = async (req, res) => {
-    const HomeAnime = await pool.query('SELECT posts.id,posts.image,posts.title FROM posts WHERE posts.status = "1" AND posts.type = "serie" ORDER BY posts.id DESC LIMIT 0,12')
-    const HomeMovie = await pool.query('SELECT posts.id,posts.image,posts.title FROM posts WHERE posts.status = "1" AND posts.type = "movie" ORDER BY posts.id DESC LIMIT 0,12')
+    const HomeAnime = await pool.query('SELECT posts.id,posts.image,posts.title,posts.quality,posts.imdb,posts.animestatus FROM posts WHERE posts.status = "1" AND posts.type = "serie" ORDER BY posts.id DESC LIMIT 0,11')
+    const HomeMovie = await pool.query('SELECT posts.id,posts.image,posts.title,posts.quality,posts.imdb FROM posts WHERE posts.status = "1" AND posts.type = "movie" ORDER BY posts.id DESC LIMIT 0,11')
     const HomeEpisode = await pool.query(`
     SELECT 
     posts_episode.name as episode_name, 
@@ -21,7 +21,7 @@ indexCtrl.renderIndex = async (req, res) => {
     LEFT JOIN posts_season ON posts_season.id = posts_episode.season_id  
     WHERE posts.type = "serie" AND posts.status = "1" AND posts.animestatus = "En Emision" 
     ORDER BY posts_episode.id DESC
-    LIMIT 0,8`)
+    LIMIT 0,10`)
     const HomeSlider = await pool.query(`SELECT
     posts.id, 
     slider.title,   
@@ -59,7 +59,7 @@ indexCtrl.renderIndex = async (req, res) => {
     var osh = os.hostname()
     const hostvisit = await pool.query(`SELECT DK_visitas.hostname,DK_visitas.id FROM DK_visitas WHERE DK_visitas.hostname = "${osh}" LIMIT 0,1`)
     if(hostvisit.length > 0){
-        
+        await pool.query(`UPDATE DK_visitas SET visitas = visitas + 1 WHERE DK_visitas.hostname = "${osh}"`)
     }else {
         await pool.query(`INSERT INTO DK_visitas (visitas,hostname) VALUES ("1","${osh}")`)
     }

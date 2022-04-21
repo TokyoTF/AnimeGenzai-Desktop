@@ -1,11 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, session } = require('electron')
 const open = require('open');
 const Store = require('electron-store');
 const store = new Store();
 const ProtocolRegistry = require("protocol-registry");
 require('update-electron-app')({
     repo: 'TokyoTF/AnimeGenzai-Desktop',
-    updateInterval: '5 minute'
+    updateInterval: '5 minutes'
   })
 
 const gotTheLock = app.requestSingleInstanceLock()
@@ -41,7 +41,7 @@ async function main() {
         }
     })
 
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
 
     ProtocolRegistry
         .register({
@@ -52,7 +52,7 @@ async function main() {
             terminal: true,
         })
         .then((r) => {
-            console.log("Protocol registered");
+            
         })
         .catch(console.error);
 
@@ -64,7 +64,7 @@ async function main() {
 
     // Open link in browser
     win.webContents.on('new-window', async function (e, url) {
-        if (url == "https://discord.gg/F59KYXtjMv" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop/discussions") {
+        if (url == "https://discord.gg/F59KYXtjMv" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop/discussions" || url == "https://animegenzai.xyz/" || url == "https://www.facebook.com/AnimeGenzai/") {
             e.preventDefault();
             await open(url)
         } else {
@@ -73,6 +73,9 @@ async function main() {
 
     });
 
+    session.defaultSession.on('will-download', (event, item, webContents) => {
+        event.preventDefault()
+      })
     // ready Render
     win.on('ready-to-show', () => {
         win.webContents.setZoomFactor(1);
@@ -128,9 +131,13 @@ app.commandLine.appendSwitch('device-scale-factor', 1);
 app.commandLine.appendSwitch('main-frame-resizes-are-orientation-changes', true);
 app.commandLine.appendSwitch('disable-pinch', true);
 app.commandLine.appendSwitch('enable-smooth-scrolling', '1'),
-    app.commandLine.appendSwitch('enable-overlay-scrollbar', '1');
+app.commandLine.appendSwitch('enable-overlay-scrollbar', '1');
 app.commandLine.appendSwitch('enable-use-zoom-for-dsf', true);
 app.commandLine.appendSwitch('use-vulkan');
+app.commandLine.appendSwitch('enable-webgl2');
+app.commandLine.appendSwitch('enable-webgl2-compute');
+app.commandLine.appendSwitch('disable-gpu-compositing');
+app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
 app.commandLine.appendSwitch('enable-gpu-rasterization', true);
 app.commandLine.appendSwitch('high-dpi-support', true);
 app.commandLine.appendSwitch('device-scale-factor', true);

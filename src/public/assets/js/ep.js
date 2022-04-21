@@ -22,7 +22,7 @@ if ($(".notification-item").length) {
             clearInterval(sada)
             $(".notification-item").hide()
         }, 200);
-    }, 4000)
+    }, 7500)
    
 }
 $(function() {

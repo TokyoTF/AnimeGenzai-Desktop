@@ -102,7 +102,7 @@
 
         </div>
     </div>
-    <div class="Pop-container" style="left:-3px">
+    <div class="Pop-container" style="left:2px">
         <div class="Pop-item">
             <div class="Pop-icon">
             </div>
@@ -116,12 +116,24 @@
         <a href="/anime/{{id}}">
             <div class="Anime-similar-item">
                 <div class="Anime-similar-shadow">
-                    <div class="Anime-ST">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                clip-rule="evenodd" />
-                        </svg>
+                     {{#if imdb}}
+                    <div class="Anime-tag-imdb">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                        <p>{{imdb}}</p>
+                    </div>
+                    {{/if}}
+                    {{#if animestatus}}
+                    <div class="Anime-tag-animestatus">
+                        <p>{{animestatus}}</p>
+                    </div>
+                    {{/if}}
+                    {{#if quality}}
+                    <div class="Anime-tag-quality">
+                        <p>{{quality}}</p>
+                    </div>
+                    {{/if}}
+                     <div class="Anime-Play">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
                     </div>
                 </div>
                 <div class="Anime-similar-img">

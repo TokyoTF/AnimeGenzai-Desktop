@@ -1,8 +1,7 @@
 var $ = require('jquery');
-var {remote} = require('electron');
 require('jquery.transit');
 require('slick-carousel');
-
+var imagesLoaded = require('imagesloaded');
 const { ipcRenderer } = require('electron');
 
 // query menu
@@ -183,54 +182,13 @@ window.addEventListener('keyup', function (event) {
 $("#next-page").click(function () {
     window.history.forward();
 });
+
 $('input').on('keydown', function (e) {
     if (e.keyCode == 9) {
         $(this).focus();
         e.preventDefault();
     }
 });
-
-
-$(".user-theme-selector").click(function () {
-    if ($(".user-theme-list").css('display') == "block") {
-        $(".user-theme-list").transition({ opacity: 0 })
-        setTimeout(() => {
-            $(".user-theme-list").hide()
-        }, 300);
-    } else {
-        $(".user-theme-list").show().transition({ opacity: 1 })
-    }
-})
-$(".user-ob-status").click(function () {
-    if ($(".user-menu-container").css('display') == "block") {
-        $(".user-menu-container").transition({ opacity: 0 })
-        setTimeout(() => {
-            $(".user-menu-container").hide()
-        }, 300);
-    } else {
-        $(".user-menu-container").show().transition({ opacity: 1 })
-    }
-})
-window.onclick = function (event) {
-
-    if (!event.target.matches('.user-ob-status')) {
-        if (!event.target.matches('.user-menu-container')) {
-            if (event.target.matches('.user-theme-selector')) {
-
-                $(".user-menu-container").transition({ opacity: 0 })
-                setTimeout(() => {
-                    $(".user-theme-list").hide()
-                    $(".user-menu-container").hide()
-                }, 300);
-            }
-
-
-        }
-
-
-    }
-
-}
 
 $('#SliderCra').slick({
     slidesToShow: 1,
@@ -239,6 +197,7 @@ $('#SliderCra').slick({
     centerMode: true,
     draggable: false,
     fade: true,
+    touchMove: false,
     infinite: true,
     dots: true,
     adaptiveHeight: true,
@@ -251,7 +210,26 @@ $('#SliderCra').slick({
 $('.Slider-type-a').slick({
     lazyLoad: 'ondemand',
     infinite: false,
+    touchMove: false,
     slidesToShow: 7,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        }
+    ],
     speed: 300,
     arrows: true,
     prevArrow: '<div class="Prev-anime"><svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><g data-name="arrow-left"><rect width="24" height="24" opacity="0"/><path d="M13.54 18a2.06 2.06 0 0 1-1.3-.46l-5.1-4.21a1.7 1.7 0 0 1 0-2.66l5.1-4.21a2.1 2.1 0 0 1 2.21-.26 1.76 1.76 0 0 1 1.05 1.59v8.42a1.76 1.76 0 0 1-1.05 1.59 2.23 2.23 0 0 1-.91.2z"/></g></g></svg></div>',
@@ -261,10 +239,6 @@ $('.Slider-type-a').slick({
 });
 
 
-
-
-
-
 $(".Story-item").mouseenter(function () {
     $(this).css("width", "150px")
 });
@@ -272,64 +246,44 @@ $(".Story-item").mouseleave(function () {
     $(this).css("width", "60px")
 });
 
-$("#social-1").on('click', function () {
-    ipcRenderer.send('open-url', $(this).data('url'))
-})
-$("#social-2").on('click', function () {
-
-    ipcRenderer.send('open-url', $(this).data('url'))
-})
-$("#social-3").on('click', function () {
-
-    ipcRenderer.send('open-url', $(this).data('url'))
-})
-
 //Popper.createPopper($(".Anime-item")[0], $(".xd")[0], {
 //    placement: 'right',
 //  });
 
 var state = location.href
 var path = document.location.pathname;
-if (path === "/") {
-    $(".st-home").css("background-color", "rgb(24, 24, 24)")
-    $(".st-home p").css("color", "rgb(238, 202, 82)")
-    $(".st-home > svg").css("stroke", "rgb(238, 202, 82)")
+if (path === "/" || state.includes("anime" || state.includes("movie"))) {
+    $(".mn-inicio").css('border-bottom', '2px solid #e3cf40')
 }
 if (state.includes("Discovery")) {
-    $(".st-discovery").css("background-color", "rgb(24, 24, 24)")
-    $(".st-discovery p").css("color", "rgb(238, 202, 82)")
-    $(".st-discovery > svg").css("stroke", "rgb(238, 202, 82)")
+
 }
 if (state.includes("tv-lives") || state.includes("tv-live")) {
-    $(".st-tvlives").css("background-color", "rgb(24, 24, 24)")
-    $(".st-tvlives p").css("color", "rgb(238, 202, 82)")
-    $(".st-tvlives > svg").css("stroke", "rgb(238, 202, 82)")
+    $(".mn-tvlives").css('border-bottom', '2px solid #e3cf40')
 }
 if (state.includes("categories") || state.includes("category")) {
-    $(".st-categories").css("background-color", "rgb(24, 24, 24)")
-    $(".st-categories p").css("color", "rgb(238, 202, 82)")
-    $(".st-categories > svg").css("stroke", "rgb(238, 202, 82)")
+    $(".mn-cat").css('border-bottom', '2px solid #e3cf40')
 }
 
 
 //tab little
 if (state.includes("profile")) {
-    $(".profile-header-info").on("click", ".tab", function(event) {
+    $(".profile-header-info").on("click", ".tab", function (event) {
         event.preventDefault();
-      
+
         $(".tab").removeClass("active");
         $(this).hasClass("active")
-        
+
         $(".profile-middle-info").removeClass("show");
         $(this).addClass("active");
-        
-        $($(this).attr('href')).addClass("show");	
+
+        $($(this).attr('href')).addClass("show");
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         document.querySelectorAll(".little-bar")[0].setAttribute("style", "opacity: 1");
     })
-    
-    $(".profile-header-info").on("click", ".profile-header-info-item", function(event) { 
+
+    $(".profile-header-info").on("click", ".profile-header-info-item", function (event) {
         event.preventDefault();
         $(".little-bar").css('opacity', '0')
         $(this).children(".little-bar").css('opacity', '1')

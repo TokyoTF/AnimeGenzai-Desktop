@@ -48,6 +48,8 @@ animeCtrl.renderAnime = async (req, res) => {
     posts.quality, 
     posts.image, 
     posts.self, 
+    posts.imdb,
+    posts.animestatus,
     posts.type, 
     posts.status,
     posts.created
@@ -57,7 +59,7 @@ animeCtrl.renderAnime = async (req, res) => {
     WHERE posts.status = "1" AND posts_category.category_id IN (${AnimeCateg()}) AND posts.id NOT IN (${req.params.id}) AND posts.type = "serie"
     GROUP BY posts.id
     ORDER BY posts.id DESC
-    LIMIT 0,6
+    LIMIT 0,7
         `)
     res.render('Anime/Anime', { AnimeRender, AnimeSeason, AnimeEpisode, animeSimilar, AnimeCategories })
 
@@ -179,6 +181,8 @@ animeCtrl.renderEpisode = async (req, res) => {
         posts.quality, 
         posts.image, 
         posts.self, 
+        posts.imdb,
+        posts.animestatus,
         posts.type, 
         posts.status,
         posts.created
@@ -216,6 +220,8 @@ animeCtrl.category = async (req, res) => {
     posts.image, 
     posts.self, 
     posts.type, 
+    posts.imdb,
+    posts.animestatus,
     posts.quality, 
     posts.status,
     posts.created
