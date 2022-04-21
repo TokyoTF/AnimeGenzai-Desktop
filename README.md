@@ -2,9 +2,10 @@
 ###### ¿Que es AnimeGenzai?
 ##### AnimeGenzai es un pagina para ver series y películas respecto al anime
 
+##### (Discord AnimeGenzai)[https://discord.gg/F59KYXtjMv]
 
 * La aplicación está totalmente en desarrollo.
-* version 1.9.2
+* version 1.9.4
 
 ##### Cosas a agregar
 
@@ -15,18 +16,13 @@
 * Pantalla de login
 * Interfaz de usuario
 * configuraciones de la aplicación
-* Sistema de actualizaciones
-
-* Rediseño de todo
 
 ##### Cosas a arreglar
 
-* Retraso de busquedas
 * Retraso de inicio de aplicación
-* Error de puerto ya usado
 
 ###### Unas imagenes
-<img width="600" src="https://i.imgur.com/1mKBBh6.png">
-<img width="600" src="https://i.imgur.com/ALXi9B2.png">
-<img width="600" src="https://i.imgur.com/xZsRlSw.png">
+<img width="600" src="https://i.imgur.com/FuP0wWJ.png">
+<img width="600" src="https://i.imgur.com/YbPGiot.png">
+<img width="600" src="https://i.imgur.com/6MVMspS.png">
 
