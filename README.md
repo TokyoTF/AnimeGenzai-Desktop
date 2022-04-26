@@ -1,3 +1,4 @@
+[![ARS](https://github.com/TokyoTF/AnimeGenzai-Desktop/actions/workflows/Testing.yml/badge.svg?branch=latest_branch)](https://github.com/TokyoTF/AnimeGenzai-Desktop/actions/workflows/Testing.yml)
 ## AnimeGenzai Desktop
 ###### ¿Que es AnimeGenzai?
 ##### AnimeGenzai es un pagina para ver series y películas respecto al anime
