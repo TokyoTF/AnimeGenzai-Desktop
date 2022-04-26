@@ -41,7 +41,7 @@ async function main() {
         }
     })
 
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     ProtocolRegistry
         .register({
@@ -50,9 +50,6 @@ async function main() {
             override: true,
             script: false,
             terminal: true,
-        })
-        .then((r) => {
-            
         })
         .catch(console.error);
 
@@ -73,7 +70,7 @@ async function main() {
 
     });
 
-    session.defaultSession.on('will-download', (event, item, webContents) => {
+    session.defaultSession.on('will-download', (event) => {
         event.preventDefault()
       })
     // ready Render
@@ -106,7 +103,7 @@ async function main() {
     ipcMain.on('window_close', () => {
         app.quit();
     });
-    ipcMain.on('window_maximize', (r) => {
+    ipcMain.on('window_maximize', () => {
         win.isMaximized() ? win.unmaximize() : win.maximize()
     })
 
@@ -116,7 +113,7 @@ async function main() {
     });
 
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow()
+        if (BrowserWindow.getAllWindows().length === 0) win()
     });
 
 

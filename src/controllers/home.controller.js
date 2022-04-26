@@ -55,6 +55,9 @@ indexCtrl.renderIndex = async (req, res) => {
     GROUP BY posts_category.content_id
     ORDER BY posts.id DESC
     LIMIT 0,6`)*/
+
+
+    /* Esto es únicamente para estadísticas */
     var os = require('os');
     var osh = os.hostname()
     const hostvisit = await pool.query(`SELECT DK_visitas.hostname,DK_visitas.id FROM DK_visitas WHERE DK_visitas.hostname = "${osh}" LIMIT 0,1`)

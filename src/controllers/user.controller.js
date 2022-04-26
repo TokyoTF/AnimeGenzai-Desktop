@@ -16,7 +16,7 @@ userCtrl.renderLoginUser = (req,res) => {
     
     res.render('User/login')
 }
-userCtrl.renderProfile = async (req,res) => {;
+userCtrl.renderProfile = async (req,res) => {
     const profile = await pool.query(`SELECT * FROM users WHERE username = "${req.params.user}" `);
     const collections = await pool.query(`
     SELECT 

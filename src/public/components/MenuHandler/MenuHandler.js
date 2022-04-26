@@ -1,7 +1,7 @@
 var $ = require('jquery');
 require('jquery.transit');
 require('slick-carousel');
-var imagesLoaded = require('imagesloaded');
+//var imagesLoaded = require('imagesloaded');
 const { ipcRenderer } = require('electron');
 
 // query menu
@@ -131,7 +131,6 @@ $("#SlideTypeA").click(function () {
         $(".menu-left-item svg").css("padding", "5px");
         $(".menu-left-item svg").css("width", "15px");
         $(".menu-left-container").css("width", "120px");
-        settabmenu('false')
         $("#SlideTypeA").data("act", "inactive")
     } else {
         if ($("#SlideTypeA").data("act") == "inactive") {
@@ -146,7 +145,6 @@ $("#SlideTypeA").click(function () {
             $(".menu-left-item svg").css("width", "20px");
             $(".menu-left-item p").css("display", "none");
             $(".control-versions").css("display", "none");
-            settabmenu('true')
             $("#SlideTypeA").data("act", "active")
         }
     }
@@ -252,11 +250,8 @@ $(".Story-item").mouseleave(function () {
 
 var state = location.href
 var path = document.location.pathname;
-if (path === "/" || state.includes("anime" || state.includes("movie"))) {
+if (path === "/" || state.includes("anime") || state.includes("movie")) {
     $(".mn-inicio").css('border-bottom', '2px solid #e3cf40')
-}
-if (state.includes("Discovery")) {
-
 }
 if (state.includes("tv-lives") || state.includes("tv-live")) {
     $(".mn-tvlives").css('border-bottom', '2px solid #e3cf40')

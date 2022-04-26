@@ -9,9 +9,3 @@ $(function () {
         selectAll: false
     })
 })
-
-$(".next").click(function() {
-    $.post("/page/" + 1,function(r) {
-        
-    })
-})

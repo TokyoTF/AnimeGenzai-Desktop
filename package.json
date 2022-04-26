@@ -6,10 +6,12 @@
   "scripts": {
     "start": "electron .",
     "dev": "nodemon --exec npm start",
+    "eslint": "eslint ./**/*.js",
+    "test": "jest",
     "build": "electron-builder"
   },
   "author": "ダイレクトコネクト",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TokyoTF/AnimeGenzai-Desktop.git"
@@ -20,7 +22,9 @@
     "productName": "AnimeGenzai Desktop",
     "win": {
       "target": "NSIS",
-      "icon": "icon.ico"
+      "icon": "icon.ico",
+      "publisherName": "ダイレクトコネクト",
+      "signAndEditExecutable": true
     },
     "nsis": {
       "installerIcon": "icon.ico",
@@ -37,7 +41,6 @@
     "electron-store": "^8.0.1",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
-    "express-mysql-session": "^2.1.7",
     "express-session": "^1.17.2",
     "express-useragent": "^1.0.15",
     "express-validator": "^6.14.0",
@@ -59,6 +62,8 @@
     "dotenv": "^11.0.0",
     "electron": "^17.0.0",
     "electron-builder": "^22.14.13",
+    "eslint": "^8.14.0",
+    "jest": "^28.0.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "npm-check-updates": "^12.1.0"

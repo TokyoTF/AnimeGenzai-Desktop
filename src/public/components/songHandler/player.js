@@ -1,4 +1,4 @@
-var $ = require('jquery');
+/*var $ = require('jquery');
 var VolumeCounter = 0
 $("#music").ready(function () {
     $("#music")[0].play()
@@ -15,4 +15,4 @@ function summer() {
     VolumeCounter += 1
 }, 300);
     return 
-}
+}*/

@@ -3,7 +3,31 @@
     <link rel="stylesheet" href="/assets/css/plyr.css">
 
 </head>
+
 <div class="Episode-container">
+    {{#each AnimeDetails}}
+<div class="breadcrumb-container">
+    <a href="/">
+    <div class="breadcrumb-item">
+        <p>Inicio</p>
+    </div>
+    </a>
+    <div class="breadcrumb-item">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+    </div>
+    <a href="/anime/{{id}}">
+    <div class="breadcrumb-item">
+        <p>{{title}}</p>
+    </div>
+    </a>
+    <div class="breadcrumb-item">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+    </div>
+    <div class="breadcrumb-item breadcrumb-active">
+        <p>{{season_name}}.Temporada {{episode_name}}.Capitulo</p>
+    </div>
+</div>
+{{/each}}
     <div class="Episode-services-container">
         {{#with AnimeEpisode.[0]}}
         <div id="present" data-ep="{{episode_id}}"></div>

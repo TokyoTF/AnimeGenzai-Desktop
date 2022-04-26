@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var { CreateNotification } = notificationCT
+var { CreateNotification } = notificationCT // eslint-disable-line
 
 $("#search-form").keyup(function () {
     if ($("#search-text").val().length > 1) {

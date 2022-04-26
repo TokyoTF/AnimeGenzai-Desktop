@@ -21,7 +21,7 @@ $(".setsimg").ready(() => {
     $(".setsimg").transition({ opacity: ".75" })
 });
 
-imagesLoaded(document.querySelector('.container-main'), function (instance) {
+imagesLoaded(document.querySelector('.container-main'), function () {
     $(".loading").transition({ x: '120px', opacity: 0 })
 });
 /*

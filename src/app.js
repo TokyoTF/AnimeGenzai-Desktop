@@ -1,12 +1,10 @@
 const path = require('path');
-const express = require('express')
+const express = require('express');
 const exphbs = require('express-handlebars');
 const useragent = require('express-useragent');
 const appexp = express();
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session');
-const passport = require('passport')
-const { database } = require('./keys');
+const passport = require('passport');
 const flash = require('connect-flash');
 
 
