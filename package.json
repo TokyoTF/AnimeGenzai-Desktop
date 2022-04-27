@@ -63,6 +63,7 @@
     "electron": "^17.0.0",
     "electron-builder": "^22.14.13",
     "eslint": "^8.14.0",
+    "eslint-plugin-jest": "^26.1.5",
     "jest": "^28.0.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
