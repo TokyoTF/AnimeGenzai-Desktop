@@ -5,14 +5,13 @@
 
 [Discord AnimeGenzai](https://discord.gg/F59KYXtjMv)
 * La aplicación está totalmente en desarrollo.
-* version 1.9.4
+* version 1.9.6
 
 ##### Cosas a agregar
 
 * filtro de categorias
 * Nuevo fondo
 * Mejor optimización de consultas
-* Quitar totalmente los anuncios
 * Pantalla de login
 * Interfaz de usuario
 * configuraciones de la aplicación
@@ -20,6 +19,10 @@
 ##### Cosas a arreglar
 
 * Retraso de inicio de aplicación
+
+##### Iconos usados
+
+[Iconmonstr](https://iconmonstr.com)
 
 ###### Unas imagenes
 <img width="600" src="https://i.imgur.com/FuP0wWJ.png">

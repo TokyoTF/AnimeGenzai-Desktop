@@ -157,9 +157,16 @@ $("#SlideTypeA").click(function () {
 $("#reload-page").click(function () {
     location.reload();
 });
+
 $("#last-page").click(function () {
-    window.history.back();
+    window.history.go(-1)
 });
+
+
+$("#next-page").click(function () {
+    window.history.go(1)
+});
+
 $("div").attr("tabindex", "-1");
 $("a").attr("tabindex", "-1");
 $("button").attr("tabindex", "-1");
@@ -177,9 +184,7 @@ window.addEventListener('keyup', function (event) {
 
     }
 });
-$("#next-page").click(function () {
-    window.history.forward();
-});
+
 
 $('input').on('keydown', function (e) {
     if (e.keyCode == 9) {
@@ -251,13 +256,13 @@ $(".Story-item").mouseleave(function () {
 var state = location.href
 var path = document.location.pathname;
 if (path === "/" || state.includes("anime") || state.includes("movie")) {
-    $(".mn-inicio").css('border-bottom', '2px solid #e3cf40')
+    $(".mn-inicio").css('border-bottom', '2px solid rgb(200 202 63)')
 }
 if (state.includes("tv-lives") || state.includes("tv-live")) {
-    $(".mn-tvlives").css('border-bottom', '2px solid #e3cf40')
+    $(".mn-tvlives").css('border-bottom', '2px solid rgb(200 202 63)')
 }
 if (state.includes("categories") || state.includes("category")) {
-    $(".mn-cat").css('border-bottom', '2px solid #e3cf40')
+    $(".mn-cat").css('border-bottom', '2px solid rgb(200 202 63)')
 }
 
 
@@ -268,11 +273,9 @@ if (state.includes("profile")) {
 
         $(".tab").removeClass("active");
         $(this).hasClass("active")
-
         $(".profile-middle-info").removeClass("show");
         $(this).addClass("active");
-
-        $($(this).attr('href')).addClass("show");
+        $($(this).attr('href')).addClass("show").transition({"opacity":1});  
     });
     $(document).ready(function () {
         document.querySelectorAll(".little-bar")[0].setAttribute("style", "opacity: 1");

@@ -1,20 +1,23 @@
-const { app, BrowserWindow, ipcMain, session } = require('electron')
+const { app, BrowserWindow, ipcMain, session, globalShortcut } = require('electron');
 const open = require('open');
 const Store = require('electron-store');
 const store = new Store();
+const { ElectronBlocker } = require('@cliqz/adblocker-electron');
+const fetch = require('cross-fetch');
 const ProtocolRegistry = require("protocol-registry");
 require('update-electron-app')({
     repo: 'TokyoTF/AnimeGenzai-Desktop',
     updateInterval: '5 minutes'
-  })
+})
 
 const gotTheLock = app.requestSingleInstanceLock()
 
-if(!gotTheLock){
+if (!gotTheLock) {
     app.quit();
-}else {
+} else {
     require('./index');
-    app.whenReady().then((main))
+    app.whenReady().then((preloads));
+
 }
 
 //app.disableHardwareAcceleration();
@@ -41,7 +44,11 @@ async function main() {
         }
     })
 
-    win.webContents.openDevTools()
+
+    ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+        blocker.enableBlockingInSession(session.defaultSession);
+      });
+    //win.webContents.openDevTools()
 
     ProtocolRegistry
         .register({
@@ -56,12 +63,48 @@ async function main() {
     if (!app.isDefaultProtocolClient('AnimeGenzai')) {
         app.setAsDefaultProtocolClient('AnimeGenzai');
     }
+    let wc = win.webContents;
 
+    wc.on('before-input-event', (e, i) => {
 
+        if(i.key === 'CapsLock') {
+           if(i.type === 'keyUp') {
+             e.preventDefault()
+           } else {
+              e.preventDefault()
+           }
+        } 
+        if(i.key === 'TAB') {
+           if(i.type === 'keyDown') {
+             e.preventDefault()
+           } else {
+              e.preventDefault()
+           }
+           if(i.type === 'keyUp') {
+            e.preventDefault()
+          } else {
+             e.preventDefault()
+          }
+        }
+      });
+    app.on('browser-window-focus', function () {
+        globalShortcut.register("CommandOrControl+R", () => {
+            
+        });
+        globalShortcut.register("F5", () => {
+           
+        });
+    });
+    
+    app.on('browser-window-blur', function () {
+        globalShortcut.unregister('CommandOrControl+R');
+        globalShortcut.unregisterAll()
+        globalShortcut.unregister('F5');
+    });
 
     // Open link in browser
     win.webContents.on('new-window', async function (e, url) {
-        if (url == "https://discord.gg/F59KYXtjMv" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop/discussions" || url == "https://animegenzai.xyz/" || url == "https://www.facebook.com/AnimeGenzai/") {
+        if (url == "https://discord.gg/F59KYXtjMv" || url == "https://www.paypal.com/paypalme/V3CT0RBUG" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop" || url == "https://github.com/TokyoTF/AnimeGenzai-Desktop/discussions" || url == "https://animegenzai.xyz/" || url == "https://www.facebook.com/AnimeGenzai/" || url.includes("https://www.facebook.com/sharer/sharer.php?u=https://animegenzai.xyz/") || url.includes("https://twitter.com/intent/tweet?text=https://animegenzai.xyz/") || url.includes("https://animegenzai.xyz/") || url.includes("gencookie")) {
             e.preventDefault();
             await open(url)
         } else {
@@ -72,11 +115,14 @@ async function main() {
 
     session.defaultSession.on('will-download', (event) => {
         event.preventDefault()
-      })
+    })
     // ready Render
     win.on('ready-to-show', () => {
         win.webContents.setZoomFactor(1);
-        win.show()
+        setTimeout(() => {
+            win.show()
+        }, 2400);
+
     });
 
     if (!store.get('tab-menu')) {
@@ -99,6 +145,8 @@ async function main() {
         win.setSize(width, height, true);
     });
 
+
+
     // Menu Handler
     ipcMain.on('window_close', () => {
         app.quit();
@@ -120,6 +168,70 @@ async function main() {
 
 }
 
+/* Preload */
+async function preloads() {
+    const preload = new BrowserWindow({
+        width: 420,
+        height: 210,
+        frame: false,
+        transparent: true,
+        minWidth: 420,
+        focus: true,
+        minimizable:false,
+        resizable: false,
+        minHeight: 210,
+        center: true,
+        show: false,
+        roundedCorners: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
+
+    });
+
+    app.on('browser-window-focus', function () {
+        globalShortcut.register("CommandOrControl+R", () => {
+            
+        });
+        globalShortcut.register("F5", () => {
+           
+        });
+    });
+    let wc = preload.webContents;
+
+    wc.on('before-input-event', (e, i) => {
+
+        if(i.key === 'CapsLock') {
+           if(i.type === 'keyUp') {
+             e.preventDefault()
+           } else {
+              e.preventDefault()
+           }
+        }
+      });
+    app.on('browser-window-blur', function () {
+        globalShortcut.unregister('CommandOrControl+R');
+        globalShortcut.unregisterAll()
+        globalShortcut.unregister('CapsLock');
+        globalShortcut.unregister('F5');
+    });
+    
+
+    preload.loadURL(`file://${__dirname}/preload.html`);
+    //preload.webContents.openDevTools()
+    preload.on('ready-to-show', () => {
+        preload.webContents.setZoomFactor(1);
+        preload.show()
+        app.whenReady().then((main));
+
+    });
+    ipcMain.on('window_load_finish', () => {
+        preload.close()
+    });
+
+}
+
 //Config Dpi
 app.commandLine.appendSwitch('auto-detect', true);
 app.commandLine.appendSwitch('no-proxy-server');
@@ -138,7 +250,5 @@ app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
 app.commandLine.appendSwitch('enable-gpu-rasterization', true);
 app.commandLine.appendSwitch('high-dpi-support', true);
 app.commandLine.appendSwitch('device-scale-factor', true);
-app.commandLine.appendSwitch('disable-touch-adjustment', true);
-app.commandLine.appendSwitch('force_low_power_gpu', true);
 
 module.exports = app

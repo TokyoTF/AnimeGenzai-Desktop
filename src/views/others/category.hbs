@@ -1,4 +1,5 @@
-<div class="Anime-box" style="margin-top: 20px;">
+{{#if category}}
+<div class="Anime-box" style="margin-top: 20px;display: flex;flex-wrap: wrap;align-items: flex-start !important;justify-content: flex-start !important;">
     {{#each category}}
     {{#ifEquals type "serie"}}
     <a href="/anime/{{id}}">
@@ -34,9 +35,17 @@
             </div>
             <div class="Anime-title-container">
                 <div class="Anime-title Anime-H1">
+                    <p>
                     {{title}}
+                    </p>
                 </div>
-
+                 <div class="Anime-title Anime-h2"><p>
+                        {{#if create_year}}
+                        {{#year create_year}}
+                        {{/year}} 
+                        {{/if}}
+</p>
+                    </div>
             </div>
 
         </div>
@@ -71,13 +80,29 @@
             </div>
             <div class="Anime-title-container">
                 <div class="Anime-title Anime-H1">
+                    <p>
                     {{title}}
+                    </p>
                 </div>
-
+<div class="Anime-title Anime-h2"><p>
+                        {{#if create_year}}
+                        {{#year create_year}}
+                        {{/year}} 
+                        {{/if}}
+</p>
+                    </div>
             </div>
 
         </div>
     </a>
     {{/ifEquals}}
+  
     {{/each}}
 </div>
+  {{else}}
+    <p style="color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;">No hay ningún anime que tenga esta categoría.</p>
+    {{/if}}

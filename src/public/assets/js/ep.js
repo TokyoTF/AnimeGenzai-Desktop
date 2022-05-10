@@ -33,7 +33,7 @@ $(function () {
         },
     })
     $("select").ready(function () {
-        
+
         if ($("select").multipleSelect("getSelects", "text")[0] == "GenPlayer") {
             var Ulrs = $("select > option").data('iframe')
             if (Ulrs.includes(".mp4")) {
@@ -45,7 +45,7 @@ $(function () {
             </video>
             `);
                 const player = new Plyr(document.getElementById('player')); // eslint-disable-line
-                
+
             } else {
                 $("#iframe").attr("src", $("select > option").data('iframe'))
             }
@@ -58,3 +58,24 @@ $(function () {
 
 });
 
+$(".Episode-Shared-title").click(function () {
+    if ($(".Episode-Shared-content").css("display") == "none") {
+        $(".Episode-Shared-content").css("display", "flex")
+        $(".Episode-Shared-content").transition({ y: "0px", opacity: 1 })
+    } else {
+        $(".Episode-Shared-content").transition({ y: "15px", opacity: 0 })
+        var sada = setInterval(() => {
+            if ($('.Episode-Shared-content').css('opacity') == "0")
+                clearInterval(sada)
+            $(".Episode-Shared-content").hide()
+        }, 200);
+    }
+})
+
+
+$(".AnimeGenzai-hp-button").on("mouseenter", function () {
+    $(".AnimeGenzai-hp-wow").transition({ bottom:"0px" })
+})
+$(".AnimeGenzai-hp-button").on("mouseleave", function () {
+    $(".AnimeGenzai-hp-wow").transition({ bottom:"-165px" })
+})

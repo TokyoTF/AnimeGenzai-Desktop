@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeGenzai esta cargando...</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    main {
+        overflow: hidden;
+        border-radius: 7px;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .preload-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .preload-img img {
+        width: 167px;
+        height: 70px;
+        object-fit: cover;
+    }
+
+    .slide-progress-bar {
+        width: 100%;
+        background-color: rgb(54, 54, 54);
+        transition: width 10s linear;
+        display: inline-block;
+        vertical-align: middle;
+        margin: auto;
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 7px;
+        background-color: #e6d235;
+        position: relative;
+        transition: linear;
+    }
+
+    .preload-container {
+        width: 100%;
+        height: 95%;
+        display: grid;
+        place-content: center;
+    }
+
+    .preload-bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .preload-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .preload-shadow {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(265deg, rgba(0, 0, 0, 0.7338468834799545) 46%, rgba(0, 0, 0, 1) 100%);
+    }
+
+    .preload-text {
+        width: 100%;
+        height: auto;
+    }
+
+    .preload-text p {
+        font-size: 13px;
+        font-weight: 500;
+        color: #a8a8a8;
+        letter-spacing: 0.2px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <main>
+        <div class="preload-bg">
+            <div class="preload-shadow"></div>
+            <img loading="edge"
+                src="http://media.moddb.com/cache/images/groups/1/1/84/thumb_620x2000/tumblr_mgin843Zgb1rmb22do1_500.gif">
+        </div>
+        <div class="preload-container">
+            <div class="preload-img">
+                <img loading="edge" ondragstart="return false" src="C:\Users\TokyoTF\Desktop\AnimeGenzai\SAD.gif">
+            </div>
+            <div class="preload-text">
+                <p>Cargando recursos</p>
+            </div>
+            <div class="slide-progress-bar">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        var animationTimeInMiliseconds = 4000;
+        var interval = 5;
+        var elem = document.getElementById("progress-bar");
+        var beginningDate = new Date().getTime();
+        const { ipcRenderer, app } = require('electron');
+        function progressBar() {
+            resetProgressBar();
+
+            id = setInterval(frame, interval);
+
+            function frame() {
+                var milisecondsFromBegin = new Date().getTime() - beginningDate;
+                var width = Math.floor(milisecondsFromBegin / animationTimeInMiliseconds * 100);
+                elem.style.width = width + "%";
+
+                if (width >= 100) {
+                   clearInterval(id);
+                   ipcRenderer.send("window_load_finish");;
+                }
+            }
+        }
+        function resetProgressBar() {
+
+            elem.style.width = 0;
+        }
+        progressBar()
+    </script>
+</body>
+
+</html>

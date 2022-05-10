@@ -2,8 +2,26 @@ const indexCtrl = {};
 const pool = require('../db/Database')
 
 indexCtrl.renderIndex = async (req, res) => {
-    const HomeAnime = await pool.query('SELECT posts.id,posts.image,posts.title,posts.quality,posts.imdb,posts.animestatus FROM posts WHERE posts.status = "1" AND posts.type = "serie" ORDER BY posts.id DESC LIMIT 0,11')
-    const HomeMovie = await pool.query('SELECT posts.id,posts.image,posts.title,posts.quality,posts.imdb FROM posts WHERE posts.status = "1" AND posts.type = "movie" ORDER BY posts.id DESC LIMIT 0,11')
+    const HomeAnime = await pool.query(`
+    SELECT 
+    posts.id,
+    posts.image,
+    posts.title,
+    posts.quality,
+    posts.imdb,
+    posts.animestatus,
+    posts.create_year,
+    IFNULL(p.CountEpisode, 0) AS CountEpisode
+    FROM posts
+    LEFT JOIN (
+        SELECT posts_episode.content_id, count(posts_episode.content_id) AS CountEpisode
+        FROM posts_episode
+    GROUP BY content_id
+      ) p ON (posts.id = p.content_id)
+    WHERE posts.status = "1" AND posts.type = "serie" 
+    ORDER BY posts.id DESC
+    LIMIT 0,11`)
+    const HomeMovie = await pool.query('SELECT posts.id,posts.image,posts.title,posts.create_year,posts.create_year,posts.quality,posts.imdb FROM posts WHERE posts.status = "1" AND posts.type = "movie" ORDER BY posts.id DESC LIMIT 0,11')
     const HomeEpisode = await pool.query(`
     SELECT 
     posts_episode.name as episode_name, 

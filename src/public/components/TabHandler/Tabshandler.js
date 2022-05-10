@@ -3,7 +3,7 @@ $(".Anime-obj-season-item").on('click', function () {
     $(".Anime-obj-season").children().removeClass('activetab')
     $(this).addClass('activetab')
     $(".Anime-obj-episodes").scrollTop(-0)
-    $.get("/se/" + $(this).data('cont') + "/" + $(this).data('id'), function (data) {
+    $.post("/se/" + $(this).data('cont') + "/" + $(this).data('id'), function (data) {
         $(".Anime-obj-episodes").html('')
         data.AnimeEpisodes.map(r => {
             $(".Anime-obj-episodes").append(`
@@ -28,13 +28,13 @@ $(window).ready(async function () {
 })
 
 function Render() {
-    $.get("/se/" + $(".Anime-obj-season-item").first().data('cont') + "/" + $(".Anime-obj-season-item").first().data('id'), function (data) {
+    $.post("/se/" + $(".Anime-obj-season-item").first().data('cont') + "/" + $(".Anime-obj-season-item").first().data('id'), function (data) {
         $(".Anime-obj-season-item").first().addClass('activetab')
-        
+
         $(".Anime-obj-episodes").html('')
         data.AnimeEpisodes.map(r => {
             if (r.id == $("#present").data('ep')) {
-               
+
                 $(".Anime-obj-episodes").append(`
             <a href="/anime/${r.content_id}/${r.season_id}/${r.id}/${r.name}">
             <div class="Anime-obj-episodes-item activetab">
@@ -68,3 +68,16 @@ function Render() {
     })
 }
 
+$(".Share-anime-External").click(function() {
+    if ($(".Share-anime-External-content").css("display") == "none") {
+    $(".Share-anime-External-content").css("display", "flex")
+    $(".Share-anime-External-content").transition({ y: "0px", opacity: 1 })
+    }else {
+        $(".Share-anime-External-content").transition({ y: "15px", opacity: 0 })
+        var sada = setInterval(() => {
+            if ($('.Share-anime-External-content').css('opacity') == "0")
+                clearInterval(sada)
+            $(".Share-anime-External-content").hide()
+        }, 200);
+    }
+});

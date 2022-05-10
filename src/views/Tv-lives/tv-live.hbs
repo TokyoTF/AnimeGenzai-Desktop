@@ -1,9 +1,57 @@
 {{#each tvlive}}
+<div class="breadcrumb-container">
+    <a href="/">
+        <div class="breadcrumb-item">
+            <p>Inicio</p>
+        </div>
+    </a>
+
+    <div class="breadcrumb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+        </svg>
+    </div>
+    <a href="/tv-lives">
+        <div class="breadcrumb-item">
+            <p>Tv Lives</p>
+        </div>
+    </a>
+    <div class="breadcrumb-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+        </svg>
+    </div>
+    <div class="breadcrumb-item breadcrumb-active">
+        <p>{{name}}</p>
+    </div>
+</div>
 <div class="tv-live-container">
     <div class="tv-live-item">
-       <div class="embed-container">
-           <iframe  src="{{embed}}" frameborder="0" scrolling="no" allowfullscreen></iframe>
-       </div>
+        <div class="embed-container">
+            <iframe src="{{embed}}" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
+        {{#ifEquals name "KT ANIME"}}
+       <!-- <div class="tv-live-chat">
+            <input type="text">
+            <div class="tv-live-chat-ch">
+                <div class="tv-live-chat-ch-user">
+                    <span>TokyoTF:</span>
+                    <p>asdddddddddddddddddddddddddddddddddddddddddd</p>
+                </div>
+            </div>
+            <div class="tv-live-chat-input">
+                
+                <textarea name="texts" id="" cols="25" rows="1"></textarea>
+                <div class="tv-live-chat-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                </div>
+            </div>
+        </div>-->
+        {{/ifEquals}}
+        <div class="tv-live-info">
+            <img loading="edge" src="https://animegenzai.xyz/public/upload/channel/{{image}}">
+            <p>{{name}}</p>
+        </div>
     </div>
 </div>
 {{/each}}

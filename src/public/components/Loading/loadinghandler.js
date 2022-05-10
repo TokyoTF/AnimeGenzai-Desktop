@@ -44,3 +44,10 @@ $(document).ready(function () {
    innt
 })
 */
+
+//document.querySelectorAll(".profile-middle-collections-item").forEach(function (element) {
+   
+    //$.post("/collectionpreview/" + element.getAttribute("data-id"), function (data) {
+    //    
+    //});
+//})

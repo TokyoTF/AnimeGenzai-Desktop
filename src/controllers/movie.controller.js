@@ -1,7 +1,17 @@
 const movieCtrl = {}
 const pool = require('../db/Database')
-movieCtrl.renderMovies = async(req,res) => {
-    const MovieDetails = await pool.query(`SELECT * FROM posts WHERE posts.id = ${req.params.id}`)
+movieCtrl.renderMovies = async (req, res) => {
+    const MovieDetails = await pool.query(`
+    SELECT 
+        posts.id,
+        posts.image,
+        posts.self,
+        posts.type,
+        posts.title,
+        posts.title_sub
+        FROM posts 
+        WHERE posts.id = ${req.params.id}
+       `)
     const PeliculaCategories = await pool.query(`
         SELECT 
         categories.id, 
@@ -39,7 +49,7 @@ movieCtrl.renderMovies = async(req,res) => {
     WHERE posts.status = "1" AND posts_category.category_id IN (${peliculaCateg()}) AND posts.id NOT IN (${req.params.id}) AND posts.type = "movie"
     GROUP BY posts.id
     ORDER BY posts.id ASC
-    LIMIT 0,6`)
+    LIMIT 0,7`)
     const MovieVideo = await pool.query(` SELECT 
         posts_video.id,  
         posts_video.name, 
@@ -56,8 +66,8 @@ movieCtrl.renderMovies = async(req,res) => {
         LEFT JOIN videos_option AS l ON posts_video.language_id = l.id AND l.type = "language" AND posts_video.language_id IS NOT NULL
         WHERE posts_video.content_id = ${req.params.id}
         ORDER BY posts_video.sortable ASC`)
-        
-   res.render('Movie/movie',{MovieVideo,peliculaSimilars,MovieDetails})
+
+    res.render('Movie/movie', { MovieVideo, peliculaSimilars, MovieDetails })
 }
 
 module.exports = movieCtrl;

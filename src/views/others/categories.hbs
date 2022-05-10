@@ -1,11 +1,53 @@
 <div class="categories-container">
-    {{#each categories}}
-    <a href="/category/{{id}}">
-    <div class="categories-item">
-        <p>{{name}}</p>
+     <div class="breadcrumb-container">
+        <a href="/">
+            <div class="breadcrumb-item">
+                <p>Inicio</p>
+            </div>
+        </a>
+        
+        <div class="breadcrumb-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+            </svg>
+        </div>
+         <div class="breadcrumb-item breadcrumb-active">
+                <p>Categorias</p>
+            </div>
+
     </div>
+    {{#each categories}}
+
+    <a href="/category/{{id}}">
+        <div class="categories-item" data-id="{{id}}">
+            
+            <p>{{name}}</p>
+        </div>
     </a>
     {{/each}}
 </div>
+<script>
+    var $ = require('jquery');
+    document.querySelectorAll(".categories-item").forEach(function (item) {
+            $.post('/categorypreview/' + item.getAttribute("data-id"),function (data) {
+                if(data.categorypreview.length > 0){
+                    $(item).append(`
+                 <div class="categories-img">
+                <img
+                    decoding="async" loading="edge" src="https://animegenzai.xyz/public/upload/cover/${data.categorypreview[0].image}">
+            </div>
+                `);
+                }else {
+                      $(item).append(`
+                 <div class="categories-img">
+                <img
+                    decoding="async" loading="edge" src="https://www.kcprofessional.co.za/media/150532101/no-image-placeholder.png">
+            </div>
+                `);
+                    
+                }
+                
+            });
+    });
 
-   
+</script>

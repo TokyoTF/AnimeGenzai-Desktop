@@ -2,22 +2,42 @@ const animeCtrl = {};
 const pool = require('../db/Database')
 
 animeCtrl.renderAnime = async (req, res) => {
-    const AnimeRender = await pool.query(`SELECT posts.id, posts.image, posts.title, posts.banner, posts.title_sub, posts.country, posts.create_year, posts.duration, posts.animestatus, posts.timeseason, posts.prouploader, posts.uploader, posts.description FROM posts WHERE posts.id = ${req.params.id}`)
-    const AnimeSeason = await pool.query(`SELECT 
+    const AnimeRender = await pool.query(`
+    SELECT 
+        posts.id, 
+        posts.image, 
+        posts.title, 
+        posts.self,
+        posts.type,
+        posts.banner, 
+        posts.title_sub, 
+        posts.country, 
+        posts.create_year, 
+        posts.duration, 
+        posts.animestatus, 
+        posts.timeseason, 
+        posts.prouploader, 
+        posts.uploader, 
+        posts.description 
+        FROM posts
+        WHERE posts.id = ${req.params.id}`)
+    const AnimeSeason = await pool.query(`
+    SELECT 
         posts_season.id,  
         posts_season.name
         FROM posts_season
         WHERE posts_season.content_id = ${req.params.id}
-        ORDER BY cast(name as unsigned) ASC`);
+        ORDER BY name`);
 
-    const AnimeEpisode = await pool.query(`SELECT 
+    const AnimeEpisode = await pool.query(`
+    SELECT 
         posts_episode.id,
         posts_episode.name,  
         posts_episode.description,  
         posts_episode.created
         FROM posts_episode
         WHERE posts_episode.status = "1" AND posts_episode.content_id = ${req.params.id} AND posts_episode.season_id = ${AnimeSeason[0].id}
-        ORDER BY cast(name AS UNSIGNED) ASC`);
+        ORDER BY name`);
 
     const AnimeCategories = await pool.query(`
         SELECT 
@@ -49,11 +69,18 @@ animeCtrl.renderAnime = async (req, res) => {
     posts.image, 
     posts.self, 
     posts.imdb,
+    posts.create_year,
     posts.animestatus,
     posts.type, 
     posts.status,
-    posts.created
+    posts.created,
+    IFNULL(p.CountEpisode, 0) AS CountEpisode
     FROM posts 
+    LEFT JOIN (
+        SELECT posts_episode.content_id, count(posts_episode.content_id) AS CountEpisode
+        FROM posts_episode
+    GROUP BY content_id
+      ) p ON (posts.id = p.content_id)
     LEFT JOIN posts_category ON posts_category.content_id = posts.id  
     LEFT JOIN categories ON categories.id = posts_category.category_id  
     WHERE posts.status = "1" AND posts_category.category_id IN (${AnimeCateg()}) AND posts.id NOT IN (${req.params.id}) AND posts.type = "serie"
@@ -103,6 +130,9 @@ animeCtrl.renderEpisode = async (req, res) => {
     SELECT 
     posts.id,
     posts.title,
+    posts.self,
+    posts.type,
+    posts.banner,
     posts.title_sub,
     posts.image,
     posts_episode.id as ep_id,
@@ -185,14 +215,21 @@ animeCtrl.renderEpisode = async (req, res) => {
         posts.animestatus,
         posts.type, 
         posts.status,
-        posts.created
+        posts.created,
+        posts.create_year,
+        IFNULL(p.CountEpisode, 0) AS CountEpisode
         FROM posts 
+        LEFT JOIN (
+            SELECT posts_episode.content_id, count(posts_episode.content_id) AS CountEpisode
+            FROM posts_episode
+        GROUP BY content_id
+          ) p ON (posts.id = p.content_id)
         LEFT JOIN posts_category ON posts_category.content_id = posts.id  
         LEFT JOIN categories ON categories.id = posts_category.category_id  
         WHERE posts.status = "1" AND posts_category.category_id IN (${AnimeCateg()}) AND posts.id NOT IN (${req.params.id}) AND posts.type = "serie"
         GROUP BY posts.id
         ORDER BY posts.id DESC
-        LIMIT 0,6
+        LIMIT 0,7
         `)
     res.render('Anime/Episode', { AnimeEpisode, EpisodePrev, EpisodeNext, AnimeSeason, animeSimilars, AnimeDetails })
 }
@@ -224,11 +261,27 @@ animeCtrl.category = async (req, res) => {
     posts.animestatus,
     posts.quality, 
     posts.status,
+    posts.create_year,
     posts.created
     FROM posts 
     LEFT JOIN posts_category ON posts_category.content_id = posts.id  
     LEFT JOIN categories ON categories.id = posts_category.category_id
     WHERE posts_category.category_id = ${req.params.cat} AND posts.status = "1" ORDER BY id DESC`)
     res.render("others/category", { category })
+}
+
+animeCtrl.categorypreview = async (req, res) => {
+    const categorypreview = await pool.query(`
+    SELECT 
+    posts.id, 
+    posts.image, 
+    posts.status
+    FROM posts 
+    LEFT JOIN posts_category ON posts_category.content_id = posts.id  
+    LEFT JOIN categories ON categories.id = posts_category.category_id
+    WHERE posts_category.category_id = ${req.params.pr} AND posts.status = "1" 
+    ORDER BY id DESC
+    LIMIT 0,1`)
+    return res.json({categorypreview})
 }
 module.exports = animeCtrl;

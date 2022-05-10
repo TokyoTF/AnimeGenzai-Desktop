@@ -1,6 +1,6 @@
 {
   "name": "animegenzai-desktop",
-  "version": "1.9.4",
+  "version": "1.9.6",
   "description": "AnimeGenzai es una aplicación de escritorio para ver anime.",
   "main": "src/main.js",
   "scripts": {
@@ -11,12 +11,12 @@
     "build": "electron-builder"
   },
   "author": "ダイレクトコネクト",
-  "license": "Apache-2.0",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TokyoTF/AnimeGenzai-Desktop.git"
   },
-  "homepage": "animegenzai.xyz",
+  "homepage": "https://github.com/TokyoTF/AnimeGenzai-Desktop#readme",
   "build": {
     "appId": "xyz.animegenzai.desktop",
     "productName": "AnimeGenzai Desktop",
@@ -37,6 +37,7 @@
     "@cliqz/adblocker-electron": "^1.23.4",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
+    "cross-fetch": "^3.1.5",
     "electron-localshortcut": "^3.2.1",
     "electron-store": "^8.0.1",
     "express": "^4.17.2",
